@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="bootstrap-5.3.0-alpha3-dist/css/bootstrap.min.css">
+    <script src="bootstrap-5.3.0-alpha3-dist/js/bootstrap.min.js"></script>
+</head>
+<style>
+  .maya{
+    background: goldenrod;
+    width: 400px;
+    /* height: 300px; */
+    text-align: center;
+    margin: auto;
+    flex-wrap: wrap;
+  }
+  select{
+    padding: 10px 15px;
+    background: black;
+    color: white;
+    margin: 0 10px;
+    border: none;
+    border-radius: 15px;
+    font-size: 20px;
+    box-shadow: 2px 2px 4px 4px pink;
+  }
+  option{
+    font-size: 20px;
+    border-bottom: 1px solid gold;
+    background-color: blueviolet;
+  }
+  button{
+    padding:15px 35px ;
+    margin: 10px;
+    background-color: red;
+    color: black;
+    border: none;
+    border-radius: 15px;
+    transition: 2s all ease-in-out;
+  }
+  button:focus-within{
+    background-color: aqua;
+    color: gold;
+  }
+</style>
+<body>
+    <div class="maya  bg-">
+        <img class="w-25" src="alarm_bell-removebg-preview.png" alt="" srcset="">  
+        <h1 id="h1">00:00:00 am</h1>
+        
+        <select id="select">
+            <option value="" selected>hour</option>
+          
+        </select>
+         <select id="met">
+            <option value="">min</option>
+          
+        </select>
+        <!-- <select >
+            <option value="">AM/PM</option>
+            <option value="">AM</option>
+            <option value="">PM</option>
+           
+        </select> -->
+        <button onclick="seco()">SET ALARM</button>
+    </div>
+    <!-- <audio id="audio" src="12 Stay.mp3"></audio> -->
+   
+</body>
+<script>
+ let selectEle = document.getElementById('select')
+ let input2 = document.getElementById('met')    
+ let input3 = document.getElementById('ket')    
+ 
+    let maya;
+    
+      let ringtone = new Audio("alarm.mp3") 
+
+    for (let index = 1; index <= 24; index++) {
+      index = index < 10 ? "0" + index : index;
+      selectEle.innerHTML += `<option value ="">${index}</option>`
+      // i = i > 10 ? "0" + i : i;
+    }  
+
+     for (let index = 1; index <= 59; index++) {
+      index = index < 10 ? "0" + index : index;
+         input2.innerHTML += `<option value ="">${index}</option>`
+      
+    } 
+  
+  
+    setInterval(()=> {
+      let audio = document.getElementById("h1")
+    let begin = new Date()
+    h = begin.getHours()
+    m = begin.getMinutes()
+    s = begin.getSeconds()
+    ampm = "pm"
+    if (h < 12) {
+        ampm = "am"     
+    } else {
+        ampm = "pm"
+    }
+    h = h % 12;
+    //  h = h = 0 ? 12 : h
+     h = h < 10 ? "0"+ h : h;
+    m = m < 10 ? "0"+ m : m;
+    s = s < 10 ? "0"+ s : s;
+      audio.innerHTML = `${h}:${m}: ${s} ${ampm}`
+
+
+       if (maya === `${h}:${m}` ) {
+         ringtone.play();
+         ringtone.loop = true;
+         alert("alarm activated")
+       }
+    },1000)
+      // let monday = JSON.parse(localStorage.getItem(time))
+    function seco(){
+      let time = `${selectEle.selectedIndex.valueOf()} ${input2.selectedIndex.valueOf()} `
+      localStorage.setItem("time", JSON.stringify(time))
+      // console.log(selectEle.selectedIndex.valueOf(), input2.selectedIndex.valueOf(), new Date().getHours(), new Date().getMinutes() )
+      // if (selectEle.selectedIndex == new Date().getHours() && input2.selectedIndex == new Date().getMinutes()) {
+      //     ringtone.play();
+      
+      // } else {
+      //         alert("set your time")      
+      // }
+    
+        // alert("alarm is set")
+         if (selectEle.selectedIndex.valueOf().includes("hour") || input2.selectedIndex.valueOf().includes("min")) {
+         alert("select a valid date")
+         } else {
+            alert("not correct")
+         }
+          // maya = time
+          // alert("select a valid time to set alerm")
+       
+    }
+    
+      
+    
+    
+
+</script>
+</html>

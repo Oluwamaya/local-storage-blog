@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="let()">stop</button>
+    <p id="p1"></p>
+    <script>
+        let p1 = document.getElementById("p1")
+        let test2 = new Date()
+        
+        
+       console.log(test2.getDate()); 
+       console.log(test2.getMonth()); 
+       console.log(test2.getDay()); 
+
+        // setInterval(()=>{
+        //     let date2 =  new Date()
+        //     p1.innerHTML = date2.toUTCString()
+        // },5000 )
+        // setTimeout(() => {
+        //    p1.innerHTML = "ring out loud" 
+        // }, 1000);
+        // clearInterval()
+        // OR
+        const testRam = ()=> {
+            let date2 =  new Date()
+            p1.innerHTML = date2.toUTCString()
+        }
+        setInterval(testRam,1000)
+        function let() {
+            clearInterval(testRam)
+        }
+        
+        //setInterval() allows your function to run at a given interval. It takes 2 arguments, a callback function (which you want to run at the said interval) and the interval you want the function to run (in milliseconds).
+        
+
+        //setTimeout() allows you to run a function after a certain period of time has elasped . it takes 2 arguments,a callback funtion(which you want to run at the said interval)and the time you want to elapse before the function runs.
+        // setTimeout(() =>{
+        //     p2.innerHTML = "Test Ram"
+        // }, 5000)
+    </script>
+</body>
+</html>
